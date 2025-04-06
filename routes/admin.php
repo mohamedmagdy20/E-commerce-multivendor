@@ -5,7 +5,9 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CurrencyController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\VendorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,4 +60,26 @@ Route::group(['middleware'=>'admin','prefix'=>'admin','controller'=>CurrencyCont
     $routeName = 'currency.';
     Route::get($prefix.'index','index')->name($routeName.'index');
     Route::get($prefix.'update-currency','update')->name($routeName.'update-currency');
+});
+
+Route::group(['middleware'=>'admin','prefix'=>'admin','controller'=>VendorController::class],function(){
+    $prefix = 'vendor/';
+    $routeName = 'vendors.';
+    Route::get($prefix.'index','index')->name($routeName.'index');
+    Route::get($prefix.'delete/{id}','delete')->name($routeName.'delete');
+    Route::get($prefix.'create','create')->name($routeName.'create');
+    Route::get($prefix.'edit/{id}','edit')->name($routeName.'edit');
+    Route::post($prefix.'store','store')->name($routeName.'store');
+    Route::post($prefix.'update/{id}','update')->name($routeName.'update');
+});
+
+Route::group(['middleware'=>'admin','prefix'=>'admin','controller'=>ProductController::class],function(){
+    $prefix = 'product/';
+    $routeName = 'products.';
+    Route::get($prefix.'index','index')->name($routeName.'index');
+    // Route::get($prefix.'delete/{id}','delete')->name($routeName.'delete');
+    Route::get($prefix.'create','create')->name($routeName.'create');
+    Route::get($prefix.'edit/{id}','edit')->name($routeName.'edit');
+    Route::post($prefix.'store','store')->name($routeName.'store');
+    // Route::post($prefix.'update/{id}','update')->name($routeName.'update');
 });

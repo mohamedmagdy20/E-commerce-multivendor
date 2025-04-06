@@ -11,7 +11,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,12 @@ class StoreRequest extends FormRequest
     {
         return [
             //
+            'name'=>'required|string',
+            'email'=>'required|email|unique:vendors,email',
+            'password'=>'required|confirmed',
+            'phone'=>'required|unique:vendors,phone',
+            'image'=>'nullable|image',
+            'account'=>'nullable'
         ];
     }
 }

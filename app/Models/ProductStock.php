@@ -11,10 +11,13 @@ class ProductStock extends Model
 
     protected $fillable = [
         'product_id',
-        'size_id',
-        'color_id',
+        'size',
+        'color',
         'stock',
         'is_avaiable'
+    ];
+    protected $casts = [
+        'images'=>'array'
     ];
 
     public function product()

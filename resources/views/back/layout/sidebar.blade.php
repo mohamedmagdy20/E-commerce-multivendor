@@ -129,6 +129,52 @@
             <span class="badge badge-success">2</span>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#vendors">
+            <i class="fas fa-user-circle"></i>
+            <p>Vendors</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="vendors">
+            <ul class="nav nav-collapse">
+              <li>
+                <a href="{{route('vendors.index')}}">
+                  <span class="sub-item">Manage Vendors</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{route('vendors.create')}}">
+                  <span class="sub-item">Add Vendors</span>
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#products">
+            <i class="fas fa-box"></i>
+            <p>Products</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="products">
+            <ul class="nav nav-collapse">
+              <li>
+                <a href="{{route('products.index')}}">
+                  <span class="sub-item">Manage Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{route('products.create')}}">
+                  <span class="sub-item">Add Products</span>
+                </a>
+              </li>
+             
+            </ul>
+          </div>
+        </li>
      
       </ul>
     </div>

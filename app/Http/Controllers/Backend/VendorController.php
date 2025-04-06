@@ -28,20 +28,20 @@ class VendorController extends Controller
 
     public function create()
     {
-        return view($this->path.'create');
+        return view($this->path.'create',['record'=>$this->model]);
     }
     public function edit($id)
     {
-        return view($this->path.'edit',['data'=>$this->model->findOrFail($id)]);
+        return view($this->path.'edit',['record'=>$this->model->findOrFail($id)]);
     }
 
     public function store(StoreRequest $request)
     {
         try{
             $data = $request->validated();
-            if($request->file('img'))
+            if($request->file('image'))
             {
-                $data['img'] = $this->saveFile($request->file('img'),config('filepath.VENDORS.PATH'));
+                $data['image'] = $this->saveFile($request->file('image'),config('filepath.VENDORS.PATH'));
             }
             $this->model->create($data);
             return redirect()->route($this->routePath.'index')->with('success','Data Saved');    
@@ -54,9 +54,9 @@ class VendorController extends Controller
     {
         $data = $request->validated();
         $user = $this->model->findOrFail($id);
-        if($request->file('img'))
+        if($request->file('image'))
         {
-            $data['img'] = $this->updateFile($request->img , $data['img'] , config('filepath.VENDORS.PATH'));
+            $data['image'] = $this->updateFile($request->img , $data['image'] , config('filepath.VENDORS.PATH'));
         }
         $user->update($data);
         return redirect()->route($this->routePath.'index')->with('success','Data Updated');    
@@ -65,10 +65,11 @@ class VendorController extends Controller
     public function delete($id)
     {
        $data =  $this->model->findOrFail($id);
-       if($data->img != null)
+       if($data->image != null)
        {
-            $this->deleteFile($data->img,config('filepath.VENDORS.PATH'));
+            $this->deleteFile($data->image,config('filepath.VENDORS.PATH'));
        }
+       $data->delete();
         return redirect()->route($this->routePath.'index')->with('success','Data Deleted');    
     }
 }

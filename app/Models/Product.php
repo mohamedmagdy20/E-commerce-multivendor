@@ -13,12 +13,12 @@ class Product extends Model implements TranslatableContract
 {
     use HasFactory , Translatable;
     use SlugTrait;
-    protected $fillable = ['images','slug','brand_id'];
+    protected $fillable = ['image','slug','brand_id','vendor_id'];
     protected $translatedAttributes = ['title','content']; 
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,'category_products');
     }
 
     public function brand()
